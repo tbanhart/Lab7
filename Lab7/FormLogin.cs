@@ -12,8 +12,8 @@ namespace Lab7
 {
     public partial class FormLogin : Form
     {
-        string _username { get; set; }
-        string _password { get; set; }
+        string _username = string.Empty;
+        string _password = string.Empty;
 
         static string _usernameColumn = string.Empty;
         static string _passwordColumn = string.Empty;
@@ -21,8 +21,6 @@ namespace Lab7
         public FormLogin()
         {
             InitializeComponent();
-            _username = string.Empty;
-            _password = string.Empty;
         }
     
         // Get the username and password from textboxes
@@ -32,10 +30,14 @@ namespace Lab7
             // _password = TEXTPASSWORD
         }
 
-        // Validate email
-        void ValidateEmail()
+        // Validate email - shared code could use a class
+        bool ValidateEmail()
         {
+            bool isValid = false;
+
             // NYI try to find where the instructor buried the it in lectures
+
+            return isValid;
         }
 
         // Check login with server
@@ -47,6 +49,15 @@ namespace Lab7
             // select where _usernameColumn = _username & _passwordColumn = _password
             
             return isValid;
+        }
+
+        // Attempt a login
+        void Login()
+        {
+            // Validate email
+            
+            // Verify login info
+            // If successful display the songs that are related to the artist
         }
     }
 }
