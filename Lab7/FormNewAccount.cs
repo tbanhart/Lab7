@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* New Account Form
+ * Authors: Trevor Banhart
+ * Date: 02/26/2024
+ * Description:
+ *  This allows users to add new data to the song and artist tables in the 233N Database 
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;

@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Login Form
+ * Authors: Trevor Banhart
+ * Date 02/26/2024
+ * Description:
+ *  This form allows users to enter their credentials to view all previously entered song from
+ *  their username.
+ */
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
