@@ -42,17 +42,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="_233N_Mostafavi_TeamsDataSet.xsc">
-      <DependentUpon>_233N_Mostafavi_TeamsDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="_233N_Mostafavi_TeamsDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>_233N_Mostafavi_TeamsDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="_233N_Mostafavi_TeamsDataSet.xss">
-      <DependentUpon>_233N_Mostafavi_TeamsDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -72,11 +61,6 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="_233N_Mostafavi_TeamsDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>_233N_Mostafavi_TeamsDataSet.xsd</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
