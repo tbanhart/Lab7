@@ -66,5 +66,10 @@ namespace Lab7
             // Verify login info
             // If successful display the songs that are related to the artist
         }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

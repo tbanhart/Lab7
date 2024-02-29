@@ -240,6 +240,7 @@
             this.Controls.Add(this.artistLabel);
             this.Name = "FormNewAccount";
             this.Text = "FormNewAccount";
+            this.Load += new System.EventHandler(this.FormNewAccount_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -402,6 +402,7 @@
             this.Controls.Add(this.loginEmailTextBox);
             this.Name = "FormLogin";
             this.Text = "FormLogin";
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             this.opGroupBox.ResumeLayout(false);
             this.accInfoGroupBox.ResumeLayout(false);
             this.accInfoGroupBox.PerformLayout();
