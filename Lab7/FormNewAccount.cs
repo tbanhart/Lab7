@@ -66,5 +66,10 @@ namespace Lab7
             // Push data to table
             // Display results
         }
+
+        private void FormNewAccount_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
