@@ -209,7 +209,7 @@
             this.stateTextBox.Location = new System.Drawing.Point(227, 107);
             this.stateTextBox.Name = "stateTextBox";
             this.stateTextBox.ReadOnly = true;
-            this.stateTextBox.Size = new System.Drawing.Size(62, 21);
+            this.stateTextBox.Size = new System.Drawing.Size(158, 21);
             this.stateTextBox.TabIndex = 23;
             // 
             // stateLabel
