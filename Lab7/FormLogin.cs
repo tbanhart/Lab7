@@ -122,7 +122,7 @@ namespace Lab7
             form.ShowDialog();
             this.Show();
         }
-
+        
         // Input: Exit Program
         private void cancelButton_Click(object sender, EventArgs e)
         {

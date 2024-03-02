@@ -1496,7 +1496,9 @@ SELECT artistID, name, email, password, city, state FROM Swift_Artists WHERE (ar
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillArtist(_233N_Mostafavi_TeamsDataSet.Swift_ArtistsDataTable dataTable, string email) {
+
             this.Adapter.SelectCommand = this.CommandCollection[3];
+
             if ((email == null)) {
                 throw new global::System.ArgumentNullException("email");
             }
@@ -1515,7 +1517,9 @@ SELECT artistID, name, email, password, city, state FROM Swift_Artists WHERE (ar
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual _233N_Mostafavi_TeamsDataSet.Swift_ArtistsDataTable GetArtistInfo(string email) {
+
             this.Adapter.SelectCommand = this.CommandCollection[3];
+
             if ((email == null)) {
                 throw new global::System.ArgumentNullException("email");
             }
@@ -1532,7 +1536,10 @@ SELECT artistID, name, email, password, city, state FROM Swift_Artists WHERE (ar
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual _233N_Mostafavi_TeamsDataSet.Swift_ArtistsDataTable GetValidArtist(string email, string password) {
+
             this.Adapter.SelectCommand = this.CommandCollection[4];
+
+
             if ((email == null)) {
                 throw new global::System.ArgumentNullException("email");
             }
@@ -1838,6 +1845,7 @@ SELECT artistID, name, email, password, city, state FROM Swift_Artists WHERE (ar
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
         public virtual int DeleteArtist(int artistID) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
@@ -1864,6 +1872,7 @@ SELECT artistID, name, email, password, city, state FROM Swift_Artists WHERE (ar
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual object ValidateLogin(string email, string password) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
+
             if ((email == null)) {
                 throw new global::System.ArgumentNullException("email");
             }
