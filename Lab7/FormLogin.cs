@@ -16,6 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Cryptography;
 
 namespace Lab7
 {
@@ -64,6 +65,25 @@ namespace Lab7
             return isValid;
         }
 
+        // Password hashing
+        private String hashing(string hashPassword)
+        {
+            string hashedPassword = null;
+            string theKey = "@taytay";
+            byte[] hashedInput = UTF8Encoding.UTF8.GetBytes(hashPassword);
+            using (MD5CryptoServiceProvider md5Hashing = new MD5CryptoServiceProvider())
+            {
+                byte[] keyValue = md5Hashing.ComputeHash(UTF8Encoding.UTF8.GetBytes(theKey));
+                using (TripleDESCryptoServiceProvider paramerer = new TripleDESCryptoServiceProvider() { Key = keyValue, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
+                {
+                    ICryptoTransform transform = paramerer.CreateEncryptor();
+                    byte[] hashedPar = transform.TransformFinalBlock(hashedInput, 0, hashedInput.Length);
+                    hashedPassword = Convert.ToBase64String(hashedPar, 0, hashedPar.Length);
+                }
+            }
+            return hashedPassword;
+        }
+
         // Change all account info boxes readonly status
         void SetReadOnly(bool readOnly)
         {
@@ -92,7 +112,7 @@ namespace Lab7
 
             // Verify login info
             var adapter = new Swift_ArtistsTableAdapter();
-            if ((int)adapter.ValidateLogin(InputEmail, InputPassword) == 0) { MessageBox.Show("Incorrect login credentials."); return; }
+            if ((int)adapter.ValidateLogin(InputEmail, hashing(InputPassword)) == 0) { MessageBox.Show("Incorrect login credentials."); return; }
             adapter.FillArtist(_users, InputEmail);
 
             // Get the artist's songs
@@ -144,7 +164,7 @@ namespace Lab7
             artistAdapter.DeleteArtist(_users[0].artistID);
 
             // Informs artist has been successfully deleted
-            MessageBox.Show("User and all associated songs have been successfully deleted.");
+            MessageBox.Show("Artist and all associated songs have been successfully deleted.");
 
             exitButton_Click(sender, e);
         }
@@ -162,7 +182,7 @@ namespace Lab7
             var songAdapter = new Swift_SongsTableAdapter();
             var artistAdapter = new Swift_ArtistsTableAdapter();
             int artistID = (int)_users[0]["artistID"];
-            artistAdapter.UpdateArtist(Email, Password, ArtistName, City, State, artistID);
+            artistAdapter.UpdateArtist(Email, hashing(Password), ArtistName, City, State, artistID);
             songAdapter.UpdateSong(SongName, Genre, _songs[_selectedSong].songID);
             UpdateSongs(_users[0].artistID);
             SetReadOnly(true);

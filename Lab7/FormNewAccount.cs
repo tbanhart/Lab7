@@ -16,6 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Cryptography;
 
 namespace Lab7
 {
@@ -39,6 +40,25 @@ namespace Lab7
         public FormNewAccount()
         {
             InitializeComponent();
+        }
+
+        // Password hashing
+        private String hashing(string hashPassword)
+        {
+            string hashedPassword = null;
+            string theKey = "@taytay";
+            byte[] hashedInput = UTF8Encoding.UTF8.GetBytes(hashPassword);
+            using (MD5CryptoServiceProvider md5Hashing = new MD5CryptoServiceProvider())
+            {
+                byte[] keyValue = md5Hashing.ComputeHash(UTF8Encoding.UTF8.GetBytes(theKey));
+                using (TripleDESCryptoServiceProvider paramerer = new TripleDESCryptoServiceProvider() { Key = keyValue, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
+                {
+                    ICryptoTransform transform = paramerer.CreateEncryptor();
+                    byte[] hashedPar = transform.TransformFinalBlock(hashedInput, 0, hashedInput.Length);
+                    hashedPassword = Convert.ToBase64String(hashedPar, 0, hashedPar.Length);
+                }
+            }
+            return hashedPassword;
         }
 
         // Validate email - shared code could use a class
@@ -76,7 +96,7 @@ namespace Lab7
             var artistAdapter = new Swift_ArtistsTableAdapter();
             if ((int)artistAdapter.ValidateLogin(InputEmail, Password) == 0)
             {
-                artistAdapter.AddArtist(ArtistName, InputEmail, Password, City, State);
+                artistAdapter.AddArtist(ArtistName, InputEmail, hashing(Password), City, State);
                 MessageBox.Show("User not found, creating login.");
             }
             else
