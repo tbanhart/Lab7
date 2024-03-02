@@ -122,7 +122,7 @@ namespace Lab7
             form.ShowDialog();
             this.Show();
         }
-
+        
         // Input: Exit Program
         private void cancelButton_Click(object sender, EventArgs e)
         {
@@ -132,11 +132,18 @@ namespace Lab7
         // Input: Delete Record
         private void deleteButton_Click(object sender, EventArgs e)
         {
+            // Clear out artist songs to avoid null references
             var songAdapter = new Swift_SongsTableAdapter();
-            songAdapter.DeleteSong(_songs[_selectedSong].songID);
-            SongName = _songs[0].song;
-            Genre = _songs[0].genre;
-            UpdateSongs(_users[0].artistID);
+            foreach(var song in _songs)
+            {
+                songAdapter.DeleteSong(song.songID);
+            }
+
+            // Delete artist record
+            var artistAdapter = new Swift_ArtistsTableAdapter();
+            artistAdapter.DeleteArtist(_users[0].artistID);
+
+            exitButton_Click(sender, e);
         }
 
         // Input: Enable editing
