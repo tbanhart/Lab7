@@ -68,17 +68,22 @@ namespace Lab7
         {
             ValidateEmail();
 
+            // Check if song already exists
+            var songAdapter = new Swift_SongsTableAdapter();
+            if((int)songAdapter.ValidateSong(SongName) > 0) { MessageBox.Show("Song already exists, check name and try again."); return; }
+
             // Add the user if needed
             var artistAdapter = new Swift_ArtistsTableAdapter();
-            if((int)artistAdapter.ValidateLogin(InputEmail, Password) == 0)
+            if ((int)artistAdapter.ValidateLogin(InputEmail, Password) == 0)
             {
                 artistAdapter.AddArtist(ArtistName, InputEmail, Password, City, State);
                 MessageBox.Show("User not found, creating login.");
             }
-
-            // Check if song already exists
-            var songAdapter = new Swift_SongsTableAdapter();
-            if((int)songAdapter.ValidateSong(SongName) > 0) { MessageBox.Show("Song already exists, check name and try again."); return; }
+            else
+            {
+                // Confirms song has been added if user already exists
+                MessageBox.Show("New song has been added to user.");
+            }
 
             // Add the song information
             artistAdapter.FillArtist(_artists, InputEmail);
@@ -99,6 +104,11 @@ namespace Lab7
             State = string.Empty;
             InputEmail = string.Empty;
             Password = string.Empty;
+        }
+
+        private void FormNewAccount_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

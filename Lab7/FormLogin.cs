@@ -143,6 +143,9 @@ namespace Lab7
             var artistAdapter = new Swift_ArtistsTableAdapter();
             artistAdapter.DeleteArtist(_users[0].artistID);
 
+            // Informs artist has been successfully deleted
+            MessageBox.Show("User and all associated songs have been successfully deleted.");
+
             exitButton_Click(sender, e);
         }
 
@@ -157,6 +160,9 @@ namespace Lab7
         private void updateButton_Click(object sender, EventArgs e)
         {
             var songAdapter = new Swift_SongsTableAdapter();
+            var artistAdapter = new Swift_ArtistsTableAdapter();
+            int artistID = (int)_users[0]["artistID"];
+            artistAdapter.UpdateArtist(Email, Password, ArtistName, City, State, artistID);
             songAdapter.UpdateSong(SongName, Genre, _songs[_selectedSong].songID);
             UpdateSongs(_users[0].artistID);
             SetReadOnly(true);
