@@ -57,8 +57,10 @@
             this.loginPasswordTextBox = new System.Windows.Forms.TextBox();
             this.emailLabel = new System.Windows.Forms.Label();
             this.loginEmailTextBox = new System.Windows.Forms.TextBox();
+            this.datasetMain = new Lab7._233N_Mostafavi_TeamsDataSet();
             this.opGroupBox.SuspendLayout();
             this.accInfoGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datasetMain)).BeginInit();
             this.SuspendLayout();
             // 
             // opGroupBox
@@ -89,6 +91,7 @@
             this.exitButton.TabIndex = 8;
             this.exitButton.Text = "Exit";
             this.exitButton.UseVisualStyleBackColor = false;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // updateButton
             // 
@@ -104,6 +107,7 @@
             this.updateButton.TabIndex = 7;
             this.updateButton.Text = "Update";
             this.updateButton.UseVisualStyleBackColor = false;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
             // 
             // reviseButton
             // 
@@ -118,6 +122,7 @@
             this.reviseButton.TabIndex = 6;
             this.reviseButton.Text = "Revise";
             this.reviseButton.UseVisualStyleBackColor = false;
+            this.reviseButton.Click += new System.EventHandler(this.reviseButton_Click);
             // 
             // deleteButton
             // 
@@ -132,6 +137,7 @@
             this.deleteButton.TabIndex = 5;
             this.deleteButton.Text = "Delete";
             this.deleteButton.UseVisualStyleBackColor = false;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // accInfoGroupBox
             // 
@@ -163,6 +169,7 @@
             this.genreTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.genreTextBox.Location = new System.Drawing.Point(476, 44);
             this.genreTextBox.Name = "genreTextBox";
+            this.genreTextBox.ReadOnly = true;
             this.genreTextBox.Size = new System.Drawing.Size(158, 21);
             this.genreTextBox.TabIndex = 27;
             // 
@@ -182,6 +189,7 @@
             this.accPasswordTextBox.Location = new System.Drawing.Point(227, 176);
             this.accPasswordTextBox.Name = "accPasswordTextBox";
             this.accPasswordTextBox.PasswordChar = '*';
+            this.accPasswordTextBox.ReadOnly = true;
             this.accPasswordTextBox.Size = new System.Drawing.Size(158, 21);
             this.accPasswordTextBox.TabIndex = 25;
             // 
@@ -200,6 +208,7 @@
             this.stateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.stateTextBox.Location = new System.Drawing.Point(227, 107);
             this.stateTextBox.Name = "stateTextBox";
+            this.stateTextBox.ReadOnly = true;
             this.stateTextBox.Size = new System.Drawing.Size(62, 21);
             this.stateTextBox.TabIndex = 23;
             // 
@@ -218,6 +227,7 @@
             this.songTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.songTextBox.Location = new System.Drawing.Point(227, 44);
             this.songTextBox.Name = "songTextBox";
+            this.songTextBox.ReadOnly = true;
             this.songTextBox.Size = new System.Drawing.Size(202, 21);
             this.songTextBox.TabIndex = 21;
             // 
@@ -236,6 +246,7 @@
             this.accEmailTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.accEmailTextBox.Location = new System.Drawing.Point(19, 176);
             this.accEmailTextBox.Name = "accEmailTextBox";
+            this.accEmailTextBox.ReadOnly = true;
             this.accEmailTextBox.Size = new System.Drawing.Size(158, 21);
             this.accEmailTextBox.TabIndex = 19;
             // 
@@ -254,6 +265,7 @@
             this.cityTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.cityTextBox.Location = new System.Drawing.Point(19, 107);
             this.cityTextBox.Name = "cityTextBox";
+            this.cityTextBox.ReadOnly = true;
             this.cityTextBox.Size = new System.Drawing.Size(158, 21);
             this.cityTextBox.TabIndex = 17;
             // 
@@ -272,6 +284,7 @@
             this.artistTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.artistTextBox.Location = new System.Drawing.Point(19, 44);
             this.artistTextBox.Name = "artistTextBox";
+            this.artistTextBox.ReadOnly = true;
             this.artistTextBox.Size = new System.Drawing.Size(158, 21);
             this.artistTextBox.TabIndex = 15;
             // 
@@ -298,6 +311,7 @@
             this.cancelButton.TabIndex = 17;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = false;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // newUserButton
             // 
@@ -312,6 +326,7 @@
             this.newUserButton.TabIndex = 16;
             this.newUserButton.Text = "New User";
             this.newUserButton.UseVisualStyleBackColor = false;
+            this.newUserButton.Click += new System.EventHandler(this.newUserButton_Click);
             // 
             // signInLabel
             // 
@@ -336,6 +351,7 @@
             this.loginButton.TabIndex = 15;
             this.loginButton.Text = "Login";
             this.loginButton.UseVisualStyleBackColor = false;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // loginLabel
             // 
@@ -384,6 +400,11 @@
             this.loginEmailTextBox.Size = new System.Drawing.Size(230, 20);
             this.loginEmailTextBox.TabIndex = 13;
             // 
+            // datasetMain
+            // 
+            this.datasetMain.DataSetName = "_233N_Mostafavi_TeamsDataSet";
+            this.datasetMain.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -402,10 +423,10 @@
             this.Controls.Add(this.loginEmailTextBox);
             this.Name = "FormLogin";
             this.Text = "FormLogin";
-            this.Load += new System.EventHandler(this.FormLogin_Load);
             this.opGroupBox.ResumeLayout(false);
             this.accInfoGroupBox.ResumeLayout(false);
             this.accInfoGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datasetMain)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -442,5 +463,6 @@
         private System.Windows.Forms.TextBox loginPasswordTextBox;
         private System.Windows.Forms.Label emailLabel;
         private System.Windows.Forms.TextBox loginEmailTextBox;
+        private _233N_Mostafavi_TeamsDataSet datasetMain;
     }
 }
