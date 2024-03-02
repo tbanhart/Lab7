@@ -60,6 +60,7 @@
             this.createButton.TabIndex = 33;
             this.createButton.Text = "Create";
             this.createButton.UseVisualStyleBackColor = false;
+            this.createButton.Click += new System.EventHandler(this.createButton_Click);
             // 
             // clearButton
             // 
@@ -74,6 +75,7 @@
             this.clearButton.TabIndex = 32;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = false;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
             // 
             // loginButton
             // 
@@ -88,6 +90,7 @@
             this.loginButton.TabIndex = 31;
             this.loginButton.Text = "Login";
             this.loginButton.UseVisualStyleBackColor = false;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // genreTextBox
             // 
@@ -240,7 +243,6 @@
             this.Controls.Add(this.artistLabel);
             this.Name = "FormNewAccount";
             this.Text = "FormNewAccount";
-            this.Load += new System.EventHandler(this.FormNewAccount_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

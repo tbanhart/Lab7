@@ -5,10 +5,12 @@
  *  This allows users to add new data to the song and artist tables in the 233N Database 
  */
 
+using Lab7._233N_Mostafavi_TeamsDataSetTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,23 +21,20 @@ namespace Lab7
 {
     public partial class FormNewAccount : Form
     {
+        // Database variables
+        _233N_Mostafavi_TeamsDataSet.Swift_ArtistsDataTable _artists = new _233N_Mostafavi_TeamsDataSet.Swift_ArtistsDataTable();
+        _233N_Mostafavi_TeamsDataSet.Swift_SongsDataTable _songs = new _233N_Mostafavi_TeamsDataSet.Swift_SongsDataTable();
+
         // Artist variables
-        string _artistName = string.Empty;
-        string _date = string.Empty;
-        string _genre = string.Empty;  
+        string InputEmail { get => emailTextBox.Text; set => emailTextBox.Text = value; }
+        string Password { get => passwordTextBox.Text; set => passwordTextBox.Text = value; }
+        string ArtistName { get => artistTextBox.Text; set => artistTextBox.Text = value; }
+        string City { get => cityTextBox.Text; set => cityTextBox.Text = value; }
+        string State { get => stateTextBox.Text; set => stateTextBox.Text = value; }
 
         // Song variables
-        string _album = string.Empty;
-        string _length = string.Empty;
-        string _bpm = string.Empty;
-
-        // Column names
-        static string _artistNameColumn = string.Empty;
-        static string _dateColumn = string.Empty;
-        static string _genreColumn = string.Empty;
-        static string _albumColumn = string.Empty;
-        static string _lengthColumn = string.Empty;
-        static string _bpmColumn = string.Empty;
+        string SongName { get => songTextBox.Text; set => songTextBox.Text = value; }
+        string Genre { get => genreTextBox.Text; set => genreTextBox.Text = value; }
 
         public FormNewAccount()
         {
@@ -46,30 +45,60 @@ namespace Lab7
         bool ValidateEmail()
         {
             bool isValid = false;
-            
-            // NYI try to find where the instructor buried the it in lectures
+            bool hasDomain = false;
+            bool hasDomainExtension = false;
+
+            foreach (var c in InputEmail)
+            {
+                if (c == '@') hasDomain = true;
+                else if (hasDomain && c == '.') hasDomainExtension = true;
+                else if (hasDomain && hasDomainExtension) { isValid = true; break; }
+            }
 
             return isValid;
         }
 
-        // Submit the input data to the required tables
-        void SubmitData()
+        private void loginButton_Click(object sender, EventArgs e)
         {
-            // Convert bpm to an int
-            // Convert date to a datetime (if necessary)
-            // Convert length (if necessary)
-
-            // Validate Email
-
-            // Open connection
-            // Fill in column names
-            // Push data to table
-            // Display results
+            this.Close();
         }
 
-        private void FormNewAccount_Load(object sender, EventArgs e)
+        // Input: Add records to database
+        private void createButton_Click(object sender, EventArgs e)
         {
+            ValidateEmail();
 
+            // Add the user if needed
+            var artistAdapter = new Swift_ArtistsTableAdapter();
+            if((int)artistAdapter.ValidateLogin(InputEmail, Password) == 0)
+            {
+                artistAdapter.AddArtist(ArtistName, InputEmail, Password, City, State);
+                MessageBox.Show("User not found, creating login.");
+            }
+
+            // Check if song already exists
+            var songAdapter = new Swift_SongsTableAdapter();
+            if((int)songAdapter.ValidateSong(SongName) > 0) { MessageBox.Show("Song already exists, check name and try again."); return; }
+
+            // Add the song information
+            artistAdapter.FillArtist(_artists, InputEmail);
+            songAdapter.AddSong(SongName, Genre, _artists[0].artistID);
+
+            // Reset song info boxes to prepare for the next song
+            SongName = string.Empty;
+            Genre = string.Empty;
+        }
+
+        // Input: Clear boxes
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            ArtistName = string.Empty;
+            SongName = string.Empty;
+            Genre = string.Empty;
+            City = string.Empty;
+            State = string.Empty;
+            InputEmail = string.Empty;
+            Password = string.Empty;
         }
     }
 }
