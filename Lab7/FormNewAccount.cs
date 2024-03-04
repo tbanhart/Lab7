@@ -94,7 +94,7 @@ namespace Lab7
 
             // Add the user if needed
             var artistAdapter = new Swift_ArtistsTableAdapter();
-            if ((int)artistAdapter.ValidateLogin(InputEmail, Password) == 0)
+            if ((int)artistAdapter.ValidateLogin(InputEmail, hashing(Password)) == 0)
             {
                 artistAdapter.AddArtist(ArtistName, InputEmail, hashing(Password), City, State);
                 MessageBox.Show("User not found, creating login.");

@@ -134,7 +134,7 @@
             this.stateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.stateTextBox.Location = new System.Drawing.Point(302, 183);
             this.stateTextBox.Name = "stateTextBox";
-            this.stateTextBox.Size = new System.Drawing.Size(62, 20);
+            this.stateTextBox.Size = new System.Drawing.Size(158, 20);
             this.stateTextBox.TabIndex = 26;
             // 
             // stateLabel
